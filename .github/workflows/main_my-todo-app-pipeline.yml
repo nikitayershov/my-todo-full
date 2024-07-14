@@ -29,6 +29,10 @@ jobs:
           cd client
           npm run build
 
+      - name: Move built client to server public directory
+        run: |
+          mv client/dist server/public
+
       - name: Install server dependencies
         run: |
           cd server
@@ -36,7 +40,6 @@ jobs:
 
       - name: Package and deploy
         run: |
-          mv client/dist server/public
           cd server
           zip -r ../server.zip .
         shell: bash
