@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:
+  workflow_dispatch:  # Allows manual triggering
 
 jobs:
   build:
@@ -17,7 +17,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '18'
+          node-version: '14'
 
       - name: Install client dependencies
         run: |
@@ -41,7 +41,7 @@ jobs:
       - name: Package and deploy
         run: |
           cd server
-          zip -r ../server.zip .
+          zip -r ../server.zip * .env node_modules src public package.json
         shell: bash
 
       - name: Log in to Azure
@@ -53,7 +53,7 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: my-todo-app-pipeline
-          package: ./server
+          package: server.zip
         env:
           MONGO_URI: ${{ secrets.MONGO_URI }}
           PASSWORD: ${{ secrets.PASSWORD }}
