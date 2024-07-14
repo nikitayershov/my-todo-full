@@ -37,7 +37,7 @@ jobs:
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
         with:
-          app-name: YOUR_AZURE_WEB_APP_NAME
+          app-name: my-todo-app-pipeline
           package: ./
         env:
           MONGO_URI: ${{ secrets.MONGO_URI }}
