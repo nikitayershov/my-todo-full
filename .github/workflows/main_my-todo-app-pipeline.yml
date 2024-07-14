@@ -43,7 +43,7 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: my-todo-app-pipeline
-          package: ./
+          package: ./server
         env:
           MONGO_URI: ${{ secrets.MONGO_URI }}
           PASSWORD: ${{ secrets.PASSWORD }}
