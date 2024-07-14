@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch: # Add this line to enable manual triggering
+  workflow_dispatch:
 
 jobs:
   build:
@@ -33,6 +33,13 @@ jobs:
         run: |
           cd server
           npm install
+
+      - name: Package and deploy
+        run: |
+          mv client/dist server/public
+          cd server
+          zip -r ../server.zip .
+        shell: bash
 
       - name: Log in to Azure
         uses: azure/login@v1
