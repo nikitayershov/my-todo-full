@@ -34,10 +34,15 @@ jobs:
           cd server
           npm install
 
+      - name: Log in to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
         with:
-          app-name: my-todo-app-pipeline
+          app-name: YOUR_AZURE_WEB_APP_NAME
           package: ./
         env:
           MONGO_URI: ${{ secrets.MONGO_URI }}
