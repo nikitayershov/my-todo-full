@@ -1,4 +1,16 @@
-dist
-www
-static-frontend
-server/.env
+# Ignore node_modules
+node_modules/
+
+# Ignore build outputs
+client/dist/
+server/node_modules/
+
+# Ignore IDE files
+*.vscode/
+*.DS_Store
+
+# Ignore environment files
+*.env
+
+# Ignore other unnecessary files
+*.log
